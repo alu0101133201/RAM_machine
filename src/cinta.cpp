@@ -4,11 +4,11 @@
 
 cinta::cinta()
     : cabezal(-1) {} //Si no se inicializa por fichero se pone a -1 
-										 //ya que no hay elementos
+ //ya que no hay elementos
 
 cinta::cinta(std::ifstream& fichero)
     : cabezal(0) { //Si se inicializa por fichero se pone a 0, 
-								 	 //ya que en la posición 0 ya hay un elemento listo para leer
+ //ya que en la posición 0 ya hay un elemento listo para leer
   cargar(fichero);
 }
 
