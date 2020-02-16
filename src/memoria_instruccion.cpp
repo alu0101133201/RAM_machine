@@ -14,8 +14,6 @@ memoria_instruccion::memoria_instruccion(std::ifstream& fichero) {
 		int direccionamiento_instruccion = -1;
 		std::string argumento_instruccion;
 
-
-		std::string lol;
 		//---DIVISIÓN ENTRE ETIQUETA E INSTRUCCIÓN---
 		if (elemento_leido.find(":") != std::string::npos) {
 			etiqueta = elemento_leido.substr(0,elemento_leido.find(":"));
@@ -44,7 +42,6 @@ memoria_instruccion::memoria_instruccion(std::ifstream& fichero) {
 			}
 			else if (argumento.find("*") != std::string::npos) {
 				argumento_instruccion = argumento.substr(2,argumento.length());
-				lol = argumento.substr(2,argumento.length());
 				direccionamiento_instruccion = 1;
 			}
 			else {
