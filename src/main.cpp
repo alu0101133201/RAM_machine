@@ -8,6 +8,7 @@
 #include "memoria.hpp"
 #include "memoria_instruccion.hpp"
 #include "juego_instrucciones.hpp"
+#include "RAM.hpp"
 
 int main(int argc, char** argv) {
   if (argc < 4) {
@@ -28,24 +29,15 @@ int main(int argc, char** argv) {
     return 2;
   }
 
-	memoria_instruccion hola(f_programa);
-	juego_instrucciones adios;
-	
-/*	memoria memoria_prueba;
-	memoria_prueba.write(std::cout);		
-	memoria_prueba.escribir(1,2);
-	memoria_prueba.escribir(3,0);
-	memoria_prueba.escribir(8,7);
-	memoria_prueba.write(std::cout);		
-	cinta_escritura prueba;
-	cinta_lectura prueba2(f_cinta_lectura);
-	prueba2.cinta::write(std::cout);
 
-	prueba.escribir(3);
-	prueba.escribir(3);
-	prueba.escribir(3);
-	prueba.escribir(3);
-	prueba.cinta::write(std::cout);
-*/
+
+	try{
+		RAM prueba(f_programa,f_cinta_lectura,f_cinta_escritura);
+		prueba.write(std::cout);
+
+	} catch (std::string e) {
+		std::cerr << e;
+	}
+	
   return(0);
 }

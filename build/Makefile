@@ -6,12 +6,15 @@ ODIR=../src
 
 .PHONY: all
 
-_OBJ = juego_instrucciones.o memoria_instruccion.o memoria.o cinta_lectura.o cinta_escritura.o cinta.o main.o
+_OBJ = RAM.o juego_instrucciones.o memoria_instruccion.o memoria.o cinta_lectura.o cinta_escritura.o cinta.o main.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 
 all: RAM
 
+
+$(ODIR)/RAM.o: $(ODIR)/RAM.cpp $(IDIR)/RAM.hpp
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 $(ODIR)/juego_instrucciones.o: $(ODIR)/juego_instrucciones.cpp $(IDIR)/juego_instrucciones.hpp
 	$(CC) -c -o $@ $< $(CFLAGS)
