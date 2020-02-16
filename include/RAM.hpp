@@ -15,11 +15,9 @@ class RAM {
 		cinta_lectura c_l;
 		memoria_instruccion programa;
 		memoria registros;
-
-		std::ofstream salida;
 	
 	public:
-		RAM(std::ifstream&, std::ifstream&, std::ofstream&);
+		RAM(std::ifstream&, std::ifstream&);
 		~RAM();
 
 		std::ostream& write(std::ostream&);

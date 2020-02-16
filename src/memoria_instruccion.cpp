@@ -64,8 +64,8 @@ memoria_instruccion::~memoria_instruccion() {}
 
 std::ostream& memoria_instruccion::write(std::ostream& os) {
 	for(int i = 0; i < mem.size(); i++) {
-		os << i << ".- " << std::get<0>(mem[i]) << " - " << std::get<1>(mem[i]) << 
-				" - " << std::get<2>(mem[i]) << "\n";
+		os << i << ".- (" << std::get<0>(mem[i]) << " - " << std::get<1>(mem[i]) << 
+				" - " << std::get<2>(mem[i]) << ")\n";
 	}
 	return os;
 }

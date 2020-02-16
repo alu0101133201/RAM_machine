@@ -2,21 +2,20 @@
 
 #include "RAM.hpp"
 
-RAM::RAM(std::ifstream& f_prog, std::ifstream& f_cinta, std::ofstream& f_out)
+RAM::RAM(std::ifstream& f_prog, std::ifstream& f_cinta)
 		: programa(f_prog),
-			c_l(f_cinta),
-			salida(f_out) {}
+			c_l(f_cinta) {}
 
 RAM::~RAM() {}
 
 std::ostream& RAM::write(std::ostream& os) {
-	os << "CINTA ESCRITURA ";
+	os << "---CINTA ESCRITURA---\n";
 	c_e.write(os) << "\n"; 
-	os << "CINTA LECTURA ";
+	os << "---CINTA LECTURA---\n";
   c_l.write(os) << "\n"; 
-	os << "REGISTROS ";
+	os << "---REGISTROS---\n";
 	registros.write(os) << "\n";
-	os << "PROGRAMA ";
+	os << "---PROGRAMA---\n";
 	programa.write(os);
 	
 
