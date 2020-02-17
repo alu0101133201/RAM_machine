@@ -12,6 +12,7 @@
 class memoria_instruccion {
 	private:
 		std::vector < std::tuple <int, int, std::string > > mem;
+		std::vector < std::pair <std::string, int > > etiquetas;
 		juego_instrucciones juego_i;
 
 	public:

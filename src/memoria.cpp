@@ -7,7 +7,7 @@ memoria::memoria() {}
 memoria::~memoria() {}
 
 void memoria::escribir(int valor, int registro) {
-	if (registros.size() < registro) {
+	if (registros.size() < (registro + 1)) {
 		registros.resize(registro + 1);
 	}
 	registros[registro] = valor;

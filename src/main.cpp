@@ -34,7 +34,6 @@ int main(int argc, char** argv) {
 	try{
 		RAM prueba(f_programa,f_cinta_lectura);
 		prueba.write(std::cout);
-
 	} catch (std::string e) {
 		std::cerr << e;
 	}

@@ -16,7 +16,12 @@ memoria_instruccion::memoria_instruccion(std::ifstream& fichero) {
 
 		//---DIVISIÓN ENTRE ETIQUETA E INSTRUCCIÓN---
 		if (elemento_leido.find(":") != std::string::npos) {
+			std::pair<std::string,int> aux;
+			
 			etiqueta = elemento_leido.substr(0,elemento_leido.find(":"));
+			aux.first = etiqueta;
+			aux.second = mem.size();
+			etiquetas.push_back(aux);
 			instruccion = elemento_leido.substr(elemento_leido.find(":") + 2,
 					elemento_leido.size());
 		}
@@ -60,9 +65,16 @@ memoria_instruccion::memoria_instruccion(std::ifstream& fichero) {
 memoria_instruccion::~memoria_instruccion() {}
 
 std::ostream& memoria_instruccion::write(std::ostream& os) {
+	int count = 0; 
+
 	for(int i = 0; i < mem.size(); i++) {
 		os << i << ".- (" << std::get<0>(mem[i]) << " - " << std::get<1>(mem[i]) << 
-				" - " << std::get<2>(mem[i]) << ")\n";
+				" - " << std::get<2>(mem[i]) << ")";
+		if (etiquetas[count].second == i)	{
+			os << "  :  " << etiquetas[count].first;
+			count++;
+		}
+			os << "\n";
 	}
 	return os;
 }
