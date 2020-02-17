@@ -4,10 +4,11 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <tuple>
 
 class juego_instrucciones {
 	private:
-		std::vector<std::pair< std::string,int > > tabla;
+		std::vector<std::tuple <std::string,int,int> > tabla;
 
 	public:
 		juego_instrucciones();
