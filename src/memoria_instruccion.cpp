@@ -96,11 +96,15 @@ memoria_instruccion::~memoria_instruccion() {}
 std::ostream& memoria_instruccion::write(std::ostream& os) {
 	int count = 0; 
 
+	os << "\nnº  Código  Direcc.  Argumento  Etiqueta_asociada\n";
+
 	for(int i = 0; i < mem.size(); i++) {
-		os << i << ".- (" << std::get<0>(mem[i]) << " - " << std::get<1>(mem[i]) << 
-				" - " << std::get<2>(mem[i]) << ")";
+		os << i;
+		if (i < 10) os << " ";
+		os << std::setw(7) << std::get<0>(mem[i]) << std::setw(10) << std::get<1>(mem[i]) << 
+				std::setw(7) << std::get<2>(mem[i]);
 		if ((etiquetas.size() != 0) && (etiquetas[count].second == i))	{
-			os << "  :  " << etiquetas[count].first;
+			os << std::setw(15) << etiquetas[count].first;
 			count++;
 		}
 			os << "\n";

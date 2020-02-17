@@ -5,6 +5,7 @@
 #include <tuple>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 #include <string>
 
 #include "juego_instrucciones.hpp"
