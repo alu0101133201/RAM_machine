@@ -58,3 +58,23 @@ std::ostream& juego_instrucciones::write(std::ostream& os){
 	}
 	return os;
 }
+
+int juego_instrucciones::get_argumento(int codigo) {
+	for (int i = 0; i < tabla.size(); i++) {
+		if (std::get<1>(tabla[i]) == codigo)
+			return std::get<2>(tabla[i]);;
+	}
+	return -1;
+}
+
+int juego_instrucciones::get_argumento(std::string nombre) {
+	for (int i = 0; i < tabla.size(); i++) {
+		if (std::get<0>(tabla[i]) == nombre)
+			return std::get<2>(tabla[i]);;
+	}
+	return -1;
+}
+
+
+
+

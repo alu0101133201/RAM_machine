@@ -9,6 +9,9 @@
 
 #include "juego_instrucciones.hpp"
 
+int to_int(std::string cadena);
+std::string trim(std::string cadena);
+
 class memoria_instruccion {
 	private:
 		std::vector < std::tuple <int, int, std::string > > mem;
