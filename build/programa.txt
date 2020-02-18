@@ -8,20 +8,20 @@ lee: read 1
 		 store *2
 		 load 2
 		 add =1
-		 store 2
+		 store 2        		
 
 		 jump lee
 fin: load =0
 		 store *2
-		 load =3
+		 load =3					  
 		 store 2
 
 carga: load *2
 		 jzero fin2
 
-		 mult =2
+		 mult =2				;esto es un comentario
 		 store *2
-		 write *2
+		 write *2 ;esto es otro comentario!
 
 		 load 2
 		 add =1

@@ -18,7 +18,9 @@ memoria_instruccion::memoria_instruccion(std::ifstream& fichero) {
 		int codigo_instruccion = -1;
 		int direccionamiento_instruccion = -1;
 		std::string argumento_instruccion;
-
+		
+		//Eliminación de comentarios
+		elemento_leido = trim_derecha(elemento_leido);
 		//---DIVISIÓN ENTRE ETIQUETA E INSTRUCCIÓN---
 		if (elemento_leido.find(":") != std::string::npos) {
 			std::pair<std::string,int> aux;
@@ -68,12 +70,12 @@ memoria_instruccion::memoria_instruccion(std::ifstream& fichero) {
 			//COMPROBACIÓN DE ARGUMENTO CORRESPONDIENTE A LA INSTRUCCIÓN
 			if ((to_int(argumento_instruccion) == true) && 
 					(juego_i.get_argumento(codigo_instruccion) != 2)) {
-				std::cerr << "instrucciones con argumentos erróneos\n";
+				std::cerr << "instrucciones con argumentos erróneos (expected etiqueta)\n";
 				throw "Instrucciónes con argumentos erróneos";
 			}
 			if ((to_int(argumento_instruccion) == false) &&
 		 		 (juego_i.get_argumento(codigo_instruccion) != 1)) {
-				std::cerr << "instrucciones con argumentos erróneos\n";
+				std::cerr << "instrucciones con argumentos erróneos (expected numero)\n";
 	 			throw "Instrucciónes con argumentos erróneos";
 			}
 		}
@@ -86,7 +88,6 @@ memoria_instruccion::memoria_instruccion(std::ifstream& fichero) {
 		auto tupla = std::make_tuple(codigo_instruccion, direccionamiento_instruccion,
 				argumento_instruccion);		
 		mem.push_back(tupla);	
-		
 		std::getline(fichero,elemento_leido);
 	}	
 }

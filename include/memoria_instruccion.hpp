@@ -12,6 +12,7 @@
 
 int to_int(std::string cadena);
 std::string trim(std::string cadena);
+std::string trim_derecha(std::string cadena);
 
 class memoria_instruccion {
 	private:
