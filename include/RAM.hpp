@@ -24,7 +24,7 @@ class RAM {
 		RAM(std::ifstream&, std::ifstream&);
 		~RAM();
 
-    void ejecutar_instruccion(instruccion*);
+    void ejecutar_instruccion(instruccion*, bool&);
     void ejecutar_programa();
 		std::ostream& write(std::ostream&);
 };
