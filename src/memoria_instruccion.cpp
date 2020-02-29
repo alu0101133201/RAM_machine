@@ -121,13 +121,28 @@ std::tuple<int, int, std::string> memoria_instruccion::get_tupla(int posicion) {
 std::ostream& memoria_instruccion::write(std::ostream& os) {
 	int count = 0; 
 
-	os << "\nnº  Código  Direcc.  Argumento  Etiqueta_asociada\n";
+	os << "\nnº  Código       Direcc.  Argumento  Etiqueta_asociada\n";
 
 	for(int i = 0; i < mem.size(); i++) {
+    int direccionamiento = std::get<1>(mem[i]);
 		os << i;
 		if (i < 10) os << " ";
-		os << std::setw(7) << std::get<0>(mem[i]) << std::setw(10) << std::get<1>(mem[i]) << 
-				std::setw(7) << std::get<2>(mem[i]);
+		os << std::setw(7) << std::get<0>(mem[i]);
+    switch(direccionamiento) {
+      case 0:
+        os << std::setw(15) << "INMEDIATO";
+        break;
+      case 1:
+        os << std::setw(15) << "INDIRECTO";
+        break;
+      case 2:
+        os << std::setw(15) << "DIRECTO";
+        break;
+      default:
+        throw "Error inesperado. Default de switch que no debería ser accesible\n";
+        break;
+    }
+    os << std::setw(7) << std::get<2>(mem[i]);
 		if ((etiquetas.size() != 0) && (etiquetas[count].second == i))	{
 			os << std::setw(15) << etiquetas[count].first;
 			count++;
