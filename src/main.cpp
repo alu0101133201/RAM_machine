@@ -9,6 +9,8 @@
 #include "memoria_instruccion.hpp"
 #include "juego_instrucciones.hpp"
 #include "RAM.hpp"
+#include "instruccion.hpp"
+#include "load.hpp"
 
 int to_int (std::string cadena) {
 	std::string::iterator it = cadena.begin();
@@ -68,8 +70,10 @@ int main(int argc, char** argv) {
     return 2;
   }
 	try{
+    
 		RAM prueba(f_programa,f_cinta_lectura);
 		prueba.write(std::cout);
+    prueba.ejecutar_programa();
 			
 	} catch (const char* e) {
 		std::cerr << e;

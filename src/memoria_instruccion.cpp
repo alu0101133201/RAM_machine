@@ -109,6 +109,15 @@ int memoria_instruccion::instruccion_etiqueta(std::string etiqueta_buscar) {
   throw "Referencia a etiqueta no existente\n";
 }
 
+
+int memoria_instruccion::num_instrucciones(void){ 
+  return mem.size();
+}
+
+std::tuple<int, int, std::string> memoria_instruccion::get_tupla(int posicion) {
+  return mem[posicion];
+}
+
 std::ostream& memoria_instruccion::write(std::ostream& os) {
 	int count = 0; 
 

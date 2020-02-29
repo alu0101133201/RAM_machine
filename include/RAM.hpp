@@ -8,6 +8,8 @@
 #include "cinta_lectura.hpp"
 #include "memoria.hpp"
 #include "memoria_instruccion.hpp"
+#include "instruccion.hpp"
+#include "load.hpp"
 
 class RAM {
 	private:
@@ -15,10 +17,14 @@ class RAM {
 		cinta_lectura c_l;
 		memoria_instruccion programa;
 		memoria registros;
+
+    int pc;   //program counter
 	
 	public:
 		RAM(std::ifstream&, std::ifstream&);
 		~RAM();
 
+    void ejecutar_instruccion(instruccion*);
+    void ejecutar_programa();
 		std::ostream& write(std::ostream&);
 };

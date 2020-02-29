@@ -1,17 +1,24 @@
 IDIR = ../include
+IDIRI = ../include/instrucciones
 CC=g++
-CFLAGS=-I$(IDIR) -std=c++11 -g
+CFLAGS=-I$(IDIR) -I$(IDIRI) -std=c++11 -g
 
 ODIR=../src
+ODIRI=../src/instrucciones
 
 .PHONY: all
 
-_OBJ = RAM.o juego_instrucciones.o memoria_instruccion.o memoria.o cinta_lectura.o cinta_escritura.o cinta.o main.o
+_OBJ = load.o instruccion.o RAM.o juego_instrucciones.o memoria_instruccion.o memoria.o cinta_lectura.o cinta_escritura.o cinta.o main.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 
 all: RAM
 
+$(ODIR)/instruccion.o: $(ODIRI)/instruccion.cpp $(IDIRI)/instruccion.hpp
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(ODIR)/load.o: $(ODIRI)/load.cpp $(IDIRI)/load.hpp
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 $(ODIR)/RAM.o: $(ODIR)/RAM.cpp $(IDIR)/RAM.hpp
 	$(CC) -c -o $@ $< $(CFLAGS)
