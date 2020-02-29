@@ -1,10 +1,15 @@
-//Fichero que implementa la clase memoria_instruccion
+//Fiohero que implementa la clase memoria_instruccion
+#define INMEDIATO 0
+#define INDIRECTO 1
+#define DIRECTO 2
+#define RECIBE_NUMERO 2
+#define RECIBE_ETIQUETA 1
+#define SIN_ARGUMENTO 0
 
 #include "memoria_instruccion.hpp"
 
 memoria_instruccion::memoria_instruccion(std::ifstream& fichero) {
 	std::string elemento_leido;
-
 	std::getline(fichero,elemento_leido);
 	while (fichero.good()) {
 		if (elemento_leido == "") {
@@ -46,43 +51,38 @@ memoria_instruccion::memoria_instruccion(std::ifstream& fichero) {
 			codigo_instruccion = juego_i.get_codigo(instruccion);
 		}
 		if (codigo_instruccion == -1) {
-			std::cerr << "Hay instrucciones ilegales\n";
 			throw "Instrucciones no permitidas";
 		}
 		//---PROCESAMIENTO DEL ARGUMENTO
 		if (argumento.length() != 0) {
 			if (argumento.find("=") != std::string::npos) {
 				if (codigo_instruccion == juego_i.get_codigo("STORE")) {
-					std::cerr << "Direccionamiento inválido (inmediato) con instrucción store\n";
-					throw "Instrucciónes con direccionamientos erróneos";
+					throw "Direccionamiento inválido (inmediato) con instrucción store\n";
 				}
 				argumento_instruccion = argumento.substr(2,argumento.length());
-				direccionamiento_instruccion = 0;
+				direccionamiento_instruccion = INMEDIATO;
 			}
 			else if (argumento.find("*") != std::string::npos) {
 				argumento_instruccion = argumento.substr(2,argumento.length());
-				direccionamiento_instruccion = 1;
+				direccionamiento_instruccion = INDIRECTO;
 			}
-			else {
-				direccionamiento_instruccion = 2;
-				argumento_instruccion = argumento.substr(1,argumento.length());
+      else {
+        direccionamiento_instruccion = DIRECTO;
+			  argumento_instruccion = argumento.substr(1, argumento.length());
 			}
 			//COMPROBACIÓN DE ARGUMENTO CORRESPONDIENTE A LA INSTRUCCIÓN
 			if ((to_int(argumento_instruccion) == true) && 
-					(juego_i.get_argumento(codigo_instruccion) != 2)) {
-				std::cerr << "instrucciones con argumentos erróneos (expected etiqueta)\n";
-				throw "Instrucciónes con argumentos erróneos";
+					(juego_i.get_argumento(codigo_instruccion) != RECIBE_NUMERO)) {
+				throw "instrucciones con argumentos erróneos (expected etiqueta)\n";
 			}
 			if ((to_int(argumento_instruccion) == false) &&
-		 		 (juego_i.get_argumento(codigo_instruccion) != 1)) {
-				std::cerr << "instrucciones con argumentos erróneos (expected numero)\n";
-	 			throw "Instrucciónes con argumentos erróneos";
+		 		 (juego_i.get_argumento(codigo_instruccion) != RECIBE_ETIQUETA)) {
+				throw "instrucciones con argumentos erróneos (expected numero)\n";
 			}
 		}
 		else { //caso sin argumento
-			if (juego_i.get_argumento(codigo_instruccion) != 0) {
-				std::cerr << "instrucciones sin argumento\n";
-				throw "Instrucción sin argumento";
+			if (juego_i.get_argumento(codigo_instruccion) != SIN_ARGUMENTO) {
+				throw "Instrucción sin argumento\n";
 			}
 		}
 		auto tupla = std::make_tuple(codigo_instruccion, direccionamiento_instruccion,
@@ -90,9 +90,24 @@ memoria_instruccion::memoria_instruccion(std::ifstream& fichero) {
 		mem.push_back(tupla);	
 		std::getline(fichero,elemento_leido);
 	}	
+  // Sustitución de las etiquetas por las posiciones de memoria correspondientes
+  for (int i = 0; i < mem.size(); i++) {
+    std::string arg = std::get<2>(mem[i]);
+    if (!to_int(arg) && (arg.length() != 0)) {
+      std::get<2>(mem[i]) = std::to_string(instruccion_etiqueta(arg));
+    }
+  }
 }
 
 memoria_instruccion::~memoria_instruccion() {}
+
+int memoria_instruccion::instruccion_etiqueta(std::string etiqueta_buscar) {
+  for (int i = 0; i < etiquetas.size(); i++) {
+    if (etiquetas[i].first == etiqueta_buscar)
+      return etiquetas[i].second;
+  }
+  throw "Referencia a etiqueta no existente\n";
+}
 
 std::ostream& memoria_instruccion::write(std::ostream& os) {
 	int count = 0; 

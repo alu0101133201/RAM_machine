@@ -19,6 +19,7 @@ int to_int (std::string cadena) {
 	return (!cadena.empty() && it == cadena.end());
 }
 
+// Función que elimina los whitespaces de la izquierda
 std::string trim(std::string cadena) {
 	const std::string whitespaces(" \t");
 	const auto primer_no_blanco = cadena.find_first_not_of(whitespaces);
@@ -27,6 +28,7 @@ std::string trim(std::string cadena) {
 	return cadena.substr(primer_no_blanco,cadena.length());
 }
 
+// Función que elimina los whitespaces de la derecha
 std::string trim_derecha(std::string cadena) {
 	const std::string pto_coma(";");
 	const std::string whitespaces(" \t");
@@ -49,6 +51,7 @@ std::string trim_derecha(std::string cadena) {
 int main(int argc, char** argv) {
   if (argc < 4) {
     std::cerr << "Argumentos insuficientes\n";
+    std::cerr << "./RAM <programa> <cinta_lectura> <cinta_escritura>\n";
     return 1;
   }
 
@@ -68,7 +71,7 @@ int main(int argc, char** argv) {
 		RAM prueba(f_programa,f_cinta_lectura);
 		prueba.write(std::cout);
 			
-	} catch (std::string e) {
+	} catch (const char* e) {
 		std::cerr << e;
 	}
 	

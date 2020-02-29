@@ -24,6 +24,7 @@ class memoria_instruccion {
 		memoria_instruccion(std::ifstream&);
 		~memoria_instruccion();
 
+    int instruccion_etiqueta(std::string);
 		std::ostream& write(std::ostream&);	
 
 };
