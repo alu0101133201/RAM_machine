@@ -11,6 +11,7 @@
 #include "instruccion.hpp"
 #include "load.hpp"
 #include "store.hpp"
+#include "add.hpp"
 
 class RAM {
 	private:

@@ -11,7 +11,8 @@ RAM::~RAM() {}
 void RAM::ejecutar_instruccion(instruccion* instruccion_actual, bool& halt_flag) {
   // Comprobamos que el pc es válido, por si el programador ha olvidado el HALT
   if (pc >= programa.num_instrucciones()) {
-    throw "El programador ha omitido la instrucción HALT\n";
+    halt_flag = false;
+    return;
   }
 
   std::tuple<int, int, std::string> tupla_actual;
@@ -25,6 +26,10 @@ void RAM::ejecutar_instruccion(instruccion* instruccion_actual, bool& halt_flag)
 
     case 1:
       instruccion_actual = new store;
+      break;
+
+    case 2:
+      instruccion_actual = new add;
       break;
 
     default:
