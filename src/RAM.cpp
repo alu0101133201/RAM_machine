@@ -9,18 +9,21 @@ RAM::RAM(std::ifstream& f_prog, std::ifstream& f_cinta)
 RAM::~RAM() {}
 
 void RAM::ejecutar_instruccion(instruccion* instruccion_actual, bool& halt_flag) {
+  // Comprobamos que el pc es válido, por si el programador ha olvidado el HALT
+  if (pc > programa.num_instrucciones()) {
+    throw "El programador ha omitido la instrucción HALT\n";
+  }
   instruccion_actual = new load;
-  instruccion_actual -> ejecutar(registros, c_e, c_l, programa.get_tupla(pc)); 
-  // if (halt pues halt_flag = true);
+  halt_flag = instruccion_actual -> ejecutar(registros, c_e, c_l, programa.get_tupla(pc), pc); 
   delete instruccion_actual;
 }
 
 void RAM::ejecutar_programa() {
   instruccion* instruccion_actual;
-  bool halt_flag = false;
+  bool halt_flag = true;
   pc = 0;
   
-  while(!halt_flag) {
+  while(halt_flag) {
     ejecutar_instruccion(instruccion_actual, halt_flag);
   }
 }

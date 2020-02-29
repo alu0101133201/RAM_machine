@@ -8,6 +8,6 @@ class load : public instruccion {
     ~load();
 
     bool ejecutar(memoria&, cinta_escritura&, cinta_lectura&,
-        std::tuple<int, int, std::string>);
+        std::tuple<int, int, std::string>,int&);
 };
 

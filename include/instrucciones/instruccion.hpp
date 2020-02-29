@@ -19,7 +19,7 @@ class instruccion {
     ~instruccion();
 
     virtual bool ejecutar(memoria&, cinta_escritura&, cinta_lectura&,
-        std::tuple<int, int, std::string>) = 0;
+        std::tuple<int, int, std::string>, int&) = 0;
 };
 
 
