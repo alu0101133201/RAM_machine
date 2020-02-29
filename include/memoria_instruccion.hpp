@@ -18,15 +18,17 @@ class memoria_instruccion {
 	private:
 		std::vector < std::tuple <int, int, std::string > > mem;
 		std::vector < std::pair <std::string, int > > etiquetas;
-		juego_instrucciones juego_i;
 
 	public:
+		juego_instrucciones juego_i;
+
 		memoria_instruccion(std::ifstream&);
 		~memoria_instruccion();
 
     int num_instrucciones(void);
     std::tuple <int, int, std::string> get_tupla(int);
     int instruccion_etiqueta(std::string);
+
 		std::ostream& write(std::ostream&);	
 
 };

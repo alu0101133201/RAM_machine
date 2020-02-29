@@ -10,6 +10,7 @@
 #include "memoria_instruccion.hpp"
 #include "instruccion.hpp"
 #include "load.hpp"
+#include "store.hpp"
 
 class RAM {
 	private:

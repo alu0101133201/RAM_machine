@@ -10,11 +10,29 @@ RAM::~RAM() {}
 
 void RAM::ejecutar_instruccion(instruccion* instruccion_actual, bool& halt_flag) {
   // Comprobamos que el pc es válido, por si el programador ha olvidado el HALT
-  if (pc > programa.num_instrucciones()) {
+  if (pc >= programa.num_instrucciones()) {
     throw "El programador ha omitido la instrucción HALT\n";
   }
-  instruccion_actual = new load;
-  halt_flag = instruccion_actual -> ejecutar(registros, c_e, c_l, programa.get_tupla(pc), pc); 
+
+  std::tuple<int, int, std::string> tupla_actual;
+  tupla_actual = programa.get_tupla(pc);
+  int code = std::get<0>(tupla_actual);
+  
+  switch (code) {
+    case 0:
+      instruccion_actual = new load;
+      break;
+
+    case 1:
+      instruccion_actual = new store;
+      break;
+
+    default:
+      throw "En el default. Caso teóricamente imposible\n"; 
+
+  }
+
+  halt_flag = instruccion_actual -> ejecutar(registros, c_e, c_l, tupla_actual, pc); 
   delete instruccion_actual;
 }
 

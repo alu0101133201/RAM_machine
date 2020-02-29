@@ -7,10 +7,9 @@ memoria::memoria() {}
 memoria::~memoria() {}
 
 void memoria::escribir(int valor, int registro) {
-	if (registro == 0) {
-		std::cerr << "Intentando escribir en el acumulador - instrucción ilegal\n";
+/*	if (registro == 0) {
 		throw "Intento de escribir en el acumulador";
-	}
+	} */
 	if (registros.size() < (registro + 1)) {
 		registros.resize(registro + 1);
 	}

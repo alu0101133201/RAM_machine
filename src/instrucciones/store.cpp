@@ -3,29 +3,28 @@
 #define INDIRECTO 1
 #define DIRECTO 2
 
-#include "load.hpp"
+#include "store.hpp"
 
-load::load() {}
+store::store() {}
 
-load::~load() {}
+store::~store() {}
 
-bool load::ejecutar(memoria &registros, cinta_escritura& c_e, cinta_lectura& c_l,
+bool store::ejecutar(memoria &registros, cinta_escritura& c_e, cinta_lectura& c_l,
       std::tuple<int, int, std::string> data_instruccion, int& pc) {
+  std::cout << "EN EL STORE\n";
+
   int direccionamiento = std::get<1>(data_instruccion); 
   std::string argumento_string = std::get<2>(data_instruccion);
   int argumento = std::atoi(argumento_string.c_str());
-  std::cout << "EN EL LOAD\n";
   
-  if (direccionamiento == INMEDIATO) {
-    registros.escribir(argumento, 0);
-  }
   if (direccionamiento == INDIRECTO) {
     int dummy = registros.leer(argumento);
-    registros.escribir(registros.leer(dummy), 0);
+    registros.escribir(registros.leer(0), dummy);
   }
   if (direccionamiento == DIRECTO) {
-    registros.escribir(registros.leer(argumento), 0);
+    registros.escribir(registros.leer(0), argumento);
   }
   pc++;
   return true;
 }  
+

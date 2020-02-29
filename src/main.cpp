@@ -74,6 +74,7 @@ int main(int argc, char** argv) {
 		RAM prueba(f_programa,f_cinta_lectura);
 		prueba.write(std::cout);
     prueba.ejecutar_programa();
+		prueba.write(std::cout);
 			
 	} catch (const char* e) {
 		std::cerr << e;
