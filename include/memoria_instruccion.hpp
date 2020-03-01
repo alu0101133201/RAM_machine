@@ -28,6 +28,7 @@ class memoria_instruccion {
     int num_instrucciones(void);
     std::tuple <int, int, std::string> get_tupla(int);
     int instruccion_etiqueta(std::string);
+    std::string etiqueta_asociada(int);
 
 		std::ostream& write(std::ostream&);	
 

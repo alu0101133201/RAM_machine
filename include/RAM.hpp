@@ -39,6 +39,10 @@ class RAM {
     void ejecutar_instruccion(instruccion*, bool&);
     void ejecutar_programa(int&);
 
+    std::ostream& desensamblador(std::ostream&);
+
     std::ostream& write_registros(std::ostream&);
+    std::ostream& write_cinta_e(std::ostream&);
+    std::ostream& write_cinta_l(std::ostream&);
 		std::ostream& write(std::ostream&);
 };

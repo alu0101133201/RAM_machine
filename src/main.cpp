@@ -78,6 +78,7 @@ int main(int argc, char** argv) {
 		RAM prueba(f_programa,f_cinta_lectura);
     if (debug_mode) {
       char opcion;
+      bool end_flag = true;
       do {
         std::cout << "> ";
         std::cin >> opcion;
@@ -88,14 +89,27 @@ int main(int argc, char** argv) {
             prueba.write_registros(std::cout);
             break;
           case('t'):
+            if (end_flag) {
+              instruccion* instruccion_actual;
+              prueba.ejecutar_instruccion(instruccion_actual,end_flag);
+
+            }
             break;
           case('e'):
+            {
+            int count = 0;
+            prueba.ejecutar_programa(count);
+            std::cout << "Ejecutadas: " << count << " instrucciones\n";
             break;
+            }
           case('s'):
+            prueba.desensamblador(std::cout);
             break;
           case('i'):
+            prueba.write_cinta_l(std::cout);
             break;
           case('o'):
+            prueba.write_cinta_e(std::cout);
             break;
           case('h'):
             std::cout << "\n---MENÚ RAM ---\n";
@@ -113,9 +127,6 @@ int main(int argc, char** argv) {
             break;
         }
       } while(opcion != 'x');
-//		prueba.write(std::cout);
-//    prueba.ejecutar_programa();
-//		prueba.write(std::cout);
     }
     else {
       int contador = 0;

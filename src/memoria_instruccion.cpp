@@ -116,7 +116,16 @@ int memoria_instruccion::num_instrucciones(void){
 }
 
 std::tuple<int, int, std::string> memoria_instruccion::get_tupla(int posicion) {
-  return mem[posicion]; }
+  return mem[posicion]; 
+}
+
+std::string memoria_instruccion::etiqueta_asociada(int instruccion) {
+  for (int i = 0; i < etiquetas.size(); i++) {
+    if (etiquetas[i].second == instruccion)
+        return etiquetas[i].first;
+  }
+  return "";
+}
 
 std::ostream& memoria_instruccion::write(std::ostream& os) {
 	int count = 0; 
