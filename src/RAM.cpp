@@ -36,6 +36,22 @@ void RAM::ejecutar_instruccion(instruccion* instruccion_actual, bool& halt_flag)
       instruccion_actual = new sub;
       break;
 
+    case 4:
+      instruccion_actual = new mult;
+      break;
+
+    case 5:
+      instruccion_actual = new division;
+      break;
+
+    case 6:
+      instruccion_actual = new read;
+      break;
+
+    case 7:
+      instruccion_actual = new write_cinta;
+      break;
+
     default:
       throw "En el default. Caso teóricamente imposible\n"; 
 

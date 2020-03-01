@@ -8,7 +8,7 @@ ODIRI=../src/instrucciones
 
 .PHONY: all
 
-_OBJ =  sub.o add.o store.o load.o instruccion.o RAM.o juego_instrucciones.o memoria_instruccion.o memoria.o cinta_lectura.o cinta_escritura.o cinta.o main.o
+_OBJ = write.o read.o div.o mult.o sub.o add.o store.o load.o instruccion.o RAM.o juego_instrucciones.o memoria_instruccion.o memoria.o cinta_lectura.o cinta_escritura.o cinta.o main.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 
@@ -17,6 +17,18 @@ all: RAM
 $(ODIR)/instruccion.o: $(ODIRI)/instruccion.cpp $(IDIRI)/instruccion.hpp
 	$(CC) -c -o $@ $< $(CFLAGS)
 
+$(ODIR)/write.o: $(ODIRI)/write.cpp $(IDIRI)/write.hpp
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+$(ODIR)/read.o: $(ODIRI)/read.cpp $(IDIRI)/read.hpp
+	$(CC) -c -o $@ $< $(CFLAGS)
+	
+$(ODIR)/div.o: $(ODIRI)/div.cpp $(IDIRI)/div.hpp
+	$(CC) -c -o $@ $< $(CFLAGS)
+	
+$(ODIR)/mult.o: $(ODIRI)/mult.cpp $(IDIRI)/mult.hpp
+	$(CC) -c -o $@ $< $(CFLAGS)
+	
 $(ODIR)/sub.o: $(ODIRI)/sub.cpp $(IDIRI)/sub.hpp
 	$(CC) -c -o $@ $< $(CFLAGS)
 

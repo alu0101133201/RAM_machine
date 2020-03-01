@@ -1,6 +1,6 @@
-  load =1
+  load =5
   store 2
-  load =1
+  load =2
   store 1
-  load =1
-  sub *2
+  load =15
+  div *1

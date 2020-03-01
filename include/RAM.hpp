@@ -13,6 +13,11 @@
 #include "store.hpp"
 #include "add.hpp"
 #include "sub.hpp"
+#include "mult.hpp"
+#include "div.hpp"
+#include "read.hpp"
+#include "write.hpp"
+
 
 class RAM {
 	private:
