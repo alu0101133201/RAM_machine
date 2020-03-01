@@ -15,7 +15,6 @@ bool division::ejecutar(memoria &registros, cinta_escritura& c_e, cinta_lectura&
   int direccionamiento = std::get<1>(data_instruccion); 
   std::string argumento_string = std::get<2>(data_instruccion);
   int argumento = std::atoi(argumento_string.c_str());
-  std::cout << "EN EL CON DIV con DIREC: "<<  direccionamiento << "\n";
   
   if (direccionamiento == INMEDIATO) {
     if (argumento == 0)

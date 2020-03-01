@@ -11,7 +11,6 @@ write_cinta::~write_cinta() {}
 
 bool write_cinta::ejecutar(memoria &registros, cinta_escritura& c_e, cinta_lectura& c_l,
       std::tuple<int, int, std::string> data_instruccion, int& pc) {
-  std::cout << "EN EL WRITE\n";
 
   int direccionamiento = std::get<1>(data_instruccion); 
   std::string argumento_string = std::get<2>(data_instruccion);

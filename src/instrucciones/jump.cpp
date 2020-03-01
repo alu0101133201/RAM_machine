@@ -15,7 +15,6 @@ bool jump::ejecutar(memoria &registros, cinta_escritura& c_e, cinta_lectura& c_l
   int direccionamiento = std::get<1>(data_instruccion); 
   std::string argumento_string = std::get<2>(data_instruccion);
   int argumento = std::atoi(argumento_string.c_str());
-  std::cout << "EN EL JUMP\n";
   
   if (direccionamiento == DIRECTO) {
     pc = argumento;

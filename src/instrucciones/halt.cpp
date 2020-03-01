@@ -11,7 +11,6 @@ halt::~halt() {}
 
 bool halt::ejecutar(memoria &registros, cinta_escritura& c_e, cinta_lectura& c_l,
       std::tuple<int, int, std::string> data_instruccion, int& pc) {
-  std::cout << "EN EL HALT\n";
 
   return false;
 }  
