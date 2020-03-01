@@ -60,21 +60,68 @@ int main(int argc, char** argv) {
   std::ifstream f_programa;
   std::ifstream f_cinta_lectura;
   std::ofstream f_cinta_escritura;
+  bool debug_mode;
 
   f_programa.open(argv[1]);
   f_cinta_lectura.open(argv[2]);
   f_cinta_escritura.open(argv[3], std::ios::out | std::ios::trunc);
+
+  if ((argc > 4) && (std::string(argv[4]) == "debug")) {
+    debug_mode = true;
+  }
 
   if ((!f_programa.is_open()) || (!f_cinta_lectura.is_open())) {
     std::cerr << "Error abriendo ficheros\n";
     return 2;
   }
 	try{
-    
 		RAM prueba(f_programa,f_cinta_lectura);
-		prueba.write(std::cout);
-    prueba.ejecutar_programa();
-		prueba.write(std::cout);
+    if (debug_mode) {
+      char opcion;
+      do {
+        std::cout << "> ";
+        std::cin >> opcion;
+        switch (opcion) {
+          case('x'):
+            break;
+          case('r'):
+            prueba.write_registros(std::cout);
+            break;
+          case('t'):
+            break;
+          case('e'):
+            break;
+          case('s'):
+            break;
+          case('i'):
+            break;
+          case('o'):
+            break;
+          case('h'):
+            std::cout << "\n---MENÚ RAM ---\n";
+            std::cout << "r: Ver los registros\n";
+            std::cout << "t: Traza\n";
+            std::cout << "e: Ejecutar\n";
+            std::cout << "s: Desensamblador\n";
+            std::cout << "i: Ver cinta de entrada\n";
+            std::cout << "o: Ver cinta de salida\n";
+            std::cout << "h: Ayuda\n";
+            std::cout << "x: Salir\n";
+            break;
+          default:
+            std::cout << "Opción no permitida" << std::endl;
+            break;
+        }
+      } while(opcion != 'x');
+//		prueba.write(std::cout);
+//    prueba.ejecutar_programa();
+//		prueba.write(std::cout);
+    }
+    else {
+      int contador = 0;
+      prueba.ejecutar_programa(contador);
+      std::cout << "Se han ejecutado " << contador << " instrucciones\n";
+    }
 			
 	} catch (const char* e) {
 		std::cerr << e;

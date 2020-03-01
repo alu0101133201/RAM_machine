@@ -77,16 +77,22 @@ void RAM::ejecutar_instruccion(instruccion* instruccion_actual, bool& halt_flag)
   delete instruccion_actual;
 }
 
-void RAM::ejecutar_programa() {
+void RAM::ejecutar_programa(int& contador_instrucciones) {
   instruccion* instruccion_actual;
   bool halt_flag = true;
   pc = 0;
   
   while(halt_flag) {
     ejecutar_instruccion(instruccion_actual, halt_flag);
+    contador_instrucciones++;
   }
 }
 
+std::ostream& RAM::write_registros(std::ostream& os) {
+	os << "\n---REGISTROS---\n";
+	registros.write(os) << "\n";
+  return os;
+}
 
 std::ostream& RAM::write(std::ostream& os) {
 	os << "---CINTA ESCRITURA---\n";
@@ -97,7 +103,6 @@ std::ostream& RAM::write(std::ostream& os) {
 	registros.write(os) << "\n";
 	os << "---PROGRAMA---\n";
 	programa.write(os);
-	
 
 	return os;
 }

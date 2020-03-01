@@ -37,6 +37,8 @@ class RAM {
 		~RAM();
 
     void ejecutar_instruccion(instruccion*, bool&);
-    void ejecutar_programa();
+    void ejecutar_programa(int&);
+
+    std::ostream& write_registros(std::ostream&);
 		std::ostream& write(std::ostream&);
 };
