@@ -92,14 +92,21 @@ int main(int argc, char** argv) {
             if (end_flag) {
               instruccion* instruccion_actual;
               prueba.ejecutar_instruccion(instruccion_actual,end_flag);
-
+              if (!end_flag)
+                prueba.write_cinta_e(f_cinta_escritura);
             }
-            break;
-          case('e'):
+            break; case('e'):
             {
             int count = 0;
-            prueba.ejecutar_programa(count);
-            std::cout << "Ejecutadas: " << count << " instrucciones\n";
+            if (!end_flag) {
+              std::cout << "Intentando ejecutar programa ya ejectuado\n";
+            }
+            else {
+              prueba.ejecutar_programa(count);
+              end_flag = false;
+              std::cout << "Ejecutadas: " << count << " instrucciones\n";
+              prueba.write_cinta_e(f_cinta_escritura);
+            }
             break;
             }
           case('s'):
@@ -132,6 +139,7 @@ int main(int argc, char** argv) {
       int contador = 0;
       prueba.ejecutar_programa(contador);
       std::cout << "Se han ejecutado " << contador << " instrucciones\n";
+       prueba.write_cinta_e(f_cinta_escritura);
     }
 			
 	} catch (const char* e) {
