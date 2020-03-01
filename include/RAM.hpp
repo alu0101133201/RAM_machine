@@ -17,6 +17,8 @@
 #include "div.hpp"
 #include "read.hpp"
 #include "write.hpp"
+#include "jump.hpp"
+#include "jgtz.hpp"
 
 
 class RAM {

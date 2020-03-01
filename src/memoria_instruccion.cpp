@@ -106,6 +106,7 @@ int memoria_instruccion::instruccion_etiqueta(std::string etiqueta_buscar) {
     if (etiquetas[i].first == etiqueta_buscar)
       return etiquetas[i].second;
   }
+  std::cerr << etiqueta_buscar << " no existe\n";
   throw "Referencia a etiqueta no existente\n";
 }
 
@@ -115,8 +116,7 @@ int memoria_instruccion::num_instrucciones(void){
 }
 
 std::tuple<int, int, std::string> memoria_instruccion::get_tupla(int posicion) {
-  return mem[posicion];
-}
+  return mem[posicion]; }
 
 std::ostream& memoria_instruccion::write(std::ostream& os) {
 	int count = 0; 
