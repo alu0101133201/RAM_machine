@@ -139,7 +139,7 @@ std::ostream& memoria_instruccion::write(std::ostream& os) {
         os << std::setw(15) << "DIRECTO";
         break;
       default:
-        throw "Error inesperado. Default de switch que no debería ser accesible\n";
+        os << std::setw(15);
         break;
     }
     os << std::setw(7) << std::get<2>(mem[i]);

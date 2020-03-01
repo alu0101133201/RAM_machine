@@ -1,8 +1,9 @@
   load =-5
-  jgtz fin
+  jzero fin
   store 1
-  load =5
-  jgtz fin2
+  load =0
+  halt
+  jzero fin2
 fin: load =155
   write =3
 fin2: load =156 

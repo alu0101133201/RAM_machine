@@ -60,6 +60,14 @@ void RAM::ejecutar_instruccion(instruccion* instruccion_actual, bool& halt_flag)
       instruccion_actual = new jgtz;
       break;
       
+    case 10:
+      instruccion_actual = new jzero;
+      break;
+      
+    case 11:
+      instruccion_actual = new halt;
+      break;
+
     default:
       throw "En el default. Caso teóricamente imposible\n"; 
 

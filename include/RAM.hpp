@@ -19,6 +19,8 @@
 #include "write.hpp"
 #include "jump.hpp"
 #include "jgtz.hpp"
+#include "jzero.hpp"
+#include "halt.hpp"
 
 
 class RAM {
