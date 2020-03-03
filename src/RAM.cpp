@@ -27,51 +27,51 @@ void RAM::ejecutar_instruccion(instruccion* instruccion_actual, bool& halt_flag)
   int code = std::get<0>(tupla_actual);
   
   switch (code) {
-    case 0:
+    case LOAD:
       instruccion_actual = new load;
       break;
 
-    case 1:
+    case STORE:
       instruccion_actual = new store;
       break;
 
-    case 2:
+    case ADD:
       instruccion_actual = new add;
       break;
 
-    case 3:
+    case SUB:
       instruccion_actual = new sub;
       break;
 
-    case 4:
+    case MULT:
       instruccion_actual = new mult;
       break;
 
-    case 5:
+    case DIV:
       instruccion_actual = new division;
       break;
 
-    case 6:
+    case READ:
       instruccion_actual = new read;
       break;
 
-    case 7:
+    case WRITE:
       instruccion_actual = new write_cinta;
       break;
 
-    case 8:
+    case JUMP:
       instruccion_actual = new jump;
       break;
       
-    case 9:
+    case JGTZ:
       instruccion_actual = new jgtz;
       break;
       
-    case 10:
+    case JZERO:
       instruccion_actual = new jzero;
       break;
       
-    case 11:
+    case HALT:
       instruccion_actual = new halt;
       break;
 

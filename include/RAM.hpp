@@ -22,6 +22,19 @@
 #include "jzero.hpp"
 #include "halt.hpp"
 
+#define LOAD 0
+#define STORE 1
+#define ADD 2
+#define SUB 3
+#define MULT 4
+#define DIV 5
+#define READ 6
+#define WRITE 7
+#define JUMP 8
+#define JGTZ 9
+#define JZERO 10
+#define HALT 11
+
 
 class RAM {
 	private:

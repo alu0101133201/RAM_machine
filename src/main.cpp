@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
   std::ifstream f_programa;
   std::ifstream f_cinta_lectura;
   std::ofstream f_cinta_escritura;
-  bool debug_mode;
+  bool debug_mode = false;
 
   f_programa.open(argv[1]);
   f_cinta_lectura.open(argv[2]);
